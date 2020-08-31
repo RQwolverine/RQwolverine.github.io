@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "ae85e4ed"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Linux,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Ours" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="一、Linux目录结构A、FHSIntroductionFHS（英文：Filesystem Hierarchy Standard 中文：文件系统层次结构标准），多数 Linux 版本采用这种文件组织形式，FHS 定义了系统中每个区域的用途、所需要的最小构成的文件和目录同时还给出了例外处理与矛盾处理。FHS 定义了两层规范，第一层是， / 下面的各个目录应该要放什么文件数据，例如 /etc 应该放置">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux目录结构及文件基本操作">
+<meta property="og:url" content="www.rqwolverine.com/Linux目录结构及文件基本操作.html">
+<meta property="og:site_name" content="Ours">
+<meta property="og:description" content="一、Linux目录结构A、FHSIntroductionFHS（英文：Filesystem Hierarchy Standard 中文：文件系统层次结构标准），多数 Linux 版本采用这种文件组织形式，FHS 定义了系统中每个区域的用途、所需要的最小构成的文件和目录同时还给出了例外处理与矛盾处理。FHS 定义了两层规范，第一层是， / 下面的各个目录应该要放什么文件数据，例如 /etc 应该放置">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://dn-simplecloud.shiyanlou.com/8395611543329788197-wm">
+<meta property="og:updated_time" content="2018-12-21T16:04:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux目录结构及文件基本操作">
+<meta name="twitter:description" content="一、Linux目录结构A、FHSIntroductionFHS（英文：Filesystem Hierarchy Standard 中文：文件系统层次结构标准），多数 Linux 版本采用这种文件组织形式，FHS 定义了系统中每个区域的用途、所需要的最小构成的文件和目录同时还给出了例外处理与矛盾处理。FHS 定义了两层规范，第一层是， / 下面的各个目录应该要放什么文件数据，例如 /etc 应该放置">
+<meta name="twitter:image" content="https://dn-simplecloud.shiyanlou.com/8395611543329788197-wm">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="www.rqwolverine.com/Linux目录结构及文件基本操作.html">
+
+
+
+
+
+
+  <title>Linux目录结构及文件基本操作 | Ours</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<link rel="stylesheet" href="/dist/APlayer.min.css">
+<div id="aplayer"></div>
+<script type="text/javascript" src="/dist/APlayer.min.js"></script>
+<script type="text/javascript" src="/dist/music.js"></script>
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/RQwolverine" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ours</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">负芒披苇，入海望潮</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            站点
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="www.rqwolverine.com/Linux目录结构及文件基本操作.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RQ&YL">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/rqyl.PNG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ours">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux目录结构及文件基本操作</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-31T16:05:04+08:00">
+                2020-08-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">Ubuntu</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Ubuntu/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Linux目录结构及文件基本操作.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Linux目录结构及文件基本操作.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、Linux目录结构"><a href="#一、Linux目录结构" class="headerlink" title="一、Linux目录结构"></a>一、Linux目录结构</h2><h3 id="A、FHS"><a href="#A、FHS" class="headerlink" title="A、FHS"></a>A、FHS</h3><h4 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a><strong>Introduction</strong></h4><p>FHS（英文：Filesystem Hierarchy Standard 中文：文件系统层次结构标准），多数 Linux 版本采用这种文件组织形式，FHS 定义了系统中每个区域的用途、所需要的最小构成的文件和目录同时还给出了例外处理与矛盾处理。<br>FHS 定义了两层规范，第一层是， / 下面的各个目录应该要放什么文件数据，例如 /etc 应该放置设置文件，/bin 与 /sbin 则应该放置可执行文件等等。<br>第二层则是针对 /usr 及 /var 这两个目录的子目录来定义。例如 /var/log 放置系统日志文件，/usr/share 放置共享数据等等。<br><a href="http://refspecs.linuxfoundation.org/FHS_2.3/fhs-2.3.pdf" target="_blank" rel="noopener">FHS标准文档</a></p>
+<ul>
+<li><p>执行如下命令：</p>
+<ul>
+<li>tree /</li>
+</ul>
+</li>
+<li><p>如果提示” command not found “，就先安装：</p>
+<ul>
+<li><p>sudo apt-get update</p>
+</li>
+<li><p>sudo apt-get install tree</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="B、目标路径"><a href="#B、目标路径" class="headerlink" title="B、目标路径"></a>B、目标路径</h3><ul>
+<li>使用 cd 命令可以切换目录</li>
+<li>在 Linux 里面使用 . 表示当前目录</li>
+<li>.. 表示上一级目录（注意，我们上一节介绍过的，以 . 开头的文件都是隐藏文件，所以这两个目录必然也是隐藏的，你可以使用 ls -a 命令查看隐藏文件）</li>
+<li><ul>
+<li>表示上一次所在目录</li>
+</ul>
+</li>
+<li>～ 通常表示当前用户的 home 目录</li>
+<li>使用 pwd 命令可以获取当前所在路径（绝对路径）</li>
+</ul>
+<p><strong>提示：在进行目录切换的过程中请多使用 Tab 键自动补全，可避免输入错误，连续按两次 Tab 可以显示全部候选结果。</strong></p>
+<hr>
+<h2 id="二、Linux文件的基本操作"><a href="#二、Linux文件的基本操作" class="headerlink" title="二、Linux文件的基本操作"></a>二、Linux文件的基本操作</h2><h3 id="A、新建"><a href="#A、新建" class="headerlink" title="A、新建"></a>A、新建</h3><ul>
+<li>创建名为 test 的空白文件，因为在其它目录没有权限，所以需要先 cd ~ 切换回用户的 /home/shiyanlou 目录：<ul>
+<li>cd ~</li>
+<li>touch test</li>
+</ul>
+</li>
+<li>新建目录<ul>
+<li>使用 mkdir（make directories）命令可以创建一个空目录，也可同时指定创建目录的权限属性。</li>
+<li>创建名为“ mydir ”的空目录：<ul>
+<li>mkdir mydir</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>使用 -p 参数，同时创建父目录（如果不存在该父目录），如下我们同时创建一个多级目录（这在安装软件、配置安装路径时非常有用）：<ul>
+<li>mkdir -p father/son/grandson</li>
+</ul>
+</li>
+</ul>
+<p>后面的目录路径，以绝对路径的方式表示也是可以的。</p>
+<hr>
+<h3 id="B、复制"><a href="#B、复制" class="headerlink" title="B、复制"></a>B、复制</h3><p><strong>复制文件</strong></p>
+<ul>
+<li>使用 cp（copy）命令复制一个文件到指定目录。</li>
+<li>将之前创建的“ test ”文件复制到“ /home/shiyanlou/father/son/grandson ”目录中：<ul>
+<li>cp test father/son/grandson</li>
+</ul>
+</li>
+</ul>
+<p><strong>复制目录</strong></p>
+<ul>
+<li>复制目录需要加上 -r 或者 -R 参数，表示递归复制，就是说有点“株连九族”的意思：<ul>
+<li>cp -r father family</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="C、删除"><a href="#C、删除" class="headerlink" title="C、删除"></a>C、删除</h3><ul>
+<li><p>使用 rm（remove files or directories）命令删除一个文件：</p>
+<ul>
+<li>rm test</li>
+</ul>
+</li>
+<li><p>有时候你会遇到想要删除一些为只读权限的文件，直接使用 rm 删除会显示一个提示，弱项忽略并直接删除文件，可以使用 -f 参数强制删除：</p>
+<ul>
+<li>rm -f test</li>
+</ul>
+</li>
+<li>删除目录，跟复制目录一样，要删除一个目录，也需要加上 -r 或 -R 参数：<ul>
+<li>rm -r family</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="D、移动文件与文件重命名"><a href="#D、移动文件与文件重命名" class="headerlink" title="D、移动文件与文件重命名"></a>D、移动文件与文件重命名</h3><p><strong>移动文件</strong></p>
+<ul>
+<li>使用 mv（move or rename files）命令移动文件（剪切）。将文件“ file1 ”移动到 Documents 目录：</li>
+<li>mv 源目录文件 目的目录：<ul>
+<li>mkdir Documents</li>
+<li>mv file1 Documents</li>
+</ul>
+</li>
+</ul>
+<p><strong>重命名文件</strong></p>
+<ul>
+<li>将文件“ file1 ”重命名为“ myfile ”：</li>
+<li>mv 旧的文件名 新的文件名：<ul>
+<li>mv file1 myfile</li>
+</ul>
+</li>
+</ul>
+<p><strong>批量重命名</strong></p>
+<ul>
+<li>要实现批量重命名，mv 命令就有点力不从心了，我们可以使用一个看起来更专业的命令 rename 来实现。不过它要用 perl 正则表达式来作为参数<ul>
+<li>cd /home/shiyanlou/</li>
+</ul>
+</li>
+<li>使用通配符批量创建 5 个文件:<ul>
+<li>touch file{1..5}.txt</li>
+</ul>
+</li>
+<li>批量将这 5 个后缀为 .txt 的文本文件重命名为以 .c 为后缀的文件:<ul>
+<li>rename ‘s/.txt/.c/‘ *.txt</li>
+</ul>
+</li>
+<li>批量将这 5 个文件，文件名和后缀改为大写:<ul>
+<li>rename ‘y/a-z/A-Z/‘ *.c</li>
+</ul>
+</li>
+<li>简单解释一下上面的命令，rename 是先使用第二个参数的通配符匹配所有后缀为 .txt 的文件，然后使用第一个参数提供的正则表达式将匹配的这些文件的 .txt 后缀替换为 .c，这一点在后面学习了 sed 命令后，相信会更好地理解</li>
+</ul>
+<p>代码截图如下所示——<br><img src="https://dn-simplecloud.shiyanlou.com/8395611543329788197-wm" alt="实验楼"></p>
+<hr>
+<h3 id="E、查看文件"><a href="#E、查看文件" class="headerlink" title="E、查看文件"></a>E、查看文件</h3><ul>
+<li><p>使用 cat，tac 和 nl 命令查看文件，前两个命令都是用来打印文件内容到标准输出（终端），其中 cat 为正序显示，tac 为倒序显示。<br><strong>标准输入输出：当我们执行一个 shell 命令行时通常会自动打开三个标准文件，即标准输入文件（stdin），默认对应终端的键盘、标准输出文件（stdout）和标准错误输出文件（stderr），后两个文件都对应被重定向到终端的屏幕，以便我们能直接看到输出内容。进程将从标准输入文件中得到输入数据，将正常输出数据输出到标准输出文件，而将错误信息送到标准错误文件中。</strong></p>
+</li>
+<li><p>比如我们要查看之前从 /etc 目录下拷贝来的 passwd 文件：</p>
+<ul>
+<li>cat passwd</li>
+</ul>
+</li>
+<li>可以加上 -n 参数显示行号：<ul>
+<li>cat -n passwd</li>
+</ul>
+</li>
+<li>nl 命令，添加行号并打印，这是个比 cat -n 更专业的行号打印命令。</li>
+<li>这里简单列举它的常用的几个参数：<ul>
+<li>-b : 指定添加行号的方式，主要有两种：<ul>
+<li>-b a:表示无论是否为空行，同样列出行号(“cat -n”就是这种方式)</li>
+<li>-b t:只列出非空行的编号并列出（默认为这种方式）</li>
+</ul>
+</li>
+<li>-n : 设置行号的样式，主要有三种：<ul>
+<li>-n ln:在行号字段最左端显示</li>
+<li>-n rn:在行号字段最右边显示，且不加 0</li>
+<li>-n rz:在行号字段最右边显示，且加 0</li>
+</ul>
+</li>
+<li>-w : 行号字段占用的位数(默认为 6 位)</li>
+</ul>
+</li>
+</ul>
+<p>发现使用这几个命令，默认的终端窗口大小，一屏显示不完文本的内容，得用鼠标拖动滚动条或者滑动滚轮才能继续往下翻页，要是可以直接使用键盘操作翻页就好了，那么你就可以使用下面要介绍的命令。</p>
+<ul>
+<li>使用 more 和 less 命令分页查看文件</li>
+</ul>
+<p>如果说上面的 cat 是用来快速查看一个文件的内容的，那么这个 more 和 less 就是天生用来”阅读”一个文件的内容的，比如说 man 手册内部就是使用的 less 来显示内容。其中 more 命令比较简单，只能向一个方向滚动，而 less 为基于 more 和 vi （一个强大的编辑器，我们有单独的课程来让你学习）开发，功能更强大。less 的使用基本和 more 一致，具体使用请查看 man 手册，这里只介绍 more 命令的使用。<br>使用 more 命令打开 passwd 文件：</p>
+<ul>
+<li>more passwd</li>
+</ul>
+<p>打开后默认只显示一屏内容，终端底部显示当前阅读的进度。可以使用 Enter 键向下滚动一行，使用 Space 键向下滚动一屏，按下 h 显示帮助，q 退出。</p>
+<ul>
+<li>使用 head 和 tail 命令查看文件</li>
+</ul>
+<p>这两个命令，那些性子比较急的人应该会喜欢，因为它们一个是只查看文件的头几行（默认为 10 行，不足 10 行则显示全部）和尾几行。还是拿 passwd 文件举例，比如当我们想要查看最近新增加的用户，那么我们可以查看这个 /etc/passwd 文件，不过我们前面也看到了，这个文件里面一大堆乱糟糟的东西，看起来实在费神啊。因为系统新增加一个用户，会将用户的信息添加到 passwd 文件的最后，那么这时候我们就可以使用 tail 命令了：</p>
+<ul>
+<li>tail /etc/passwd</li>
+</ul>
+<p>甚至更直接的只看一行， 加上 -n 参数，后面紧跟行数：</p>
+<ul>
+<li>tail -n 1 /etc/passwd</li>
+</ul>
+<p>关于 tail 命令，不得不提的还有它一个很牛的参数 -f，这个参数可以实现不停地读取某个文件的内容并显示。这可以让我们动态查看日志，达到实时监视的目的。</p>
+<hr>
+<h3 id="F、查看文件类型"><a href="#F、查看文件类型" class="headerlink" title="F、查看文件类型"></a>F、查看文件类型</h3><ul>
+<li>使用 file 命令查看文件的类型：<ul>
+<li>file /bin/ls</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="G、编辑文件"><a href="#G、编辑文件" class="headerlink" title="G、编辑文件"></a>G、编辑文件</h3><ul>
+<li>vimtutor</li>
+</ul>
+<hr>
+<h2 id="三、RELAX"><a href="#三、RELAX" class="headerlink" title="三、RELAX"></a>三、RELAX</h2><ul>
+<li>召唤一双眼睛出来监督你：<ul>
+<li>xeyes</li>
+</ul>
+</li>
+<li>你可以使用如下命令将它放到后台运行：<ul>
+<li>nohup xeyes </li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+	
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+  
+</div>
+
+<div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/Linux目录结构及文件基本操作.html">Linux目录结构及文件基本操作</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 RQ&YL 的个人博客">RQ&YL</a></p>
+  <p><span>发布时间:</span>2020年08月31日 - 16:08</p>
+  <p><span>最后更新:</span>2018年12月22日 - 00:12</p>
+  <p><span>原始链接:</span><a href="/Linux目录结构及文件基本操作.html" title="Linux目录结构及文件基本操作">www.rqwolverine.com/Linux目录结构及文件基本操作.html</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="www.rqwolverine.com/Linux目录结构及文件基本操作.html" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+</div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>RQ原创技术分享，您的支持将鼓励我继续创作哟~~~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="RQ&YL 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Linux用户及文件权限管理.html" rel="next" title="Linux用户及文件权限管理">
+                <i class="fa fa-chevron-left"></i> Linux用户及文件权限管理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Vim基本介绍.html" rel="prev" title="Vim基本介绍">
+                Vim基本介绍 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!--MOB SHARE BEGIN-->
+<div class="-mob-share-ui-button -mob-share-open">分享</div>
+<div class="-mob-share-ui" style="display: none">
+    <ul class="-mob-share-list">
+        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+        <li class="-mob-share-tencentweibo"><p>腾讯微博</p></li>
+        <li class="-mob-share-qzone"><p>QQ空间</p></li>
+        <li class="-mob-share-qq"><p>QQ好友</p></li>
+        <li class="-mob-share-renren"><p>人人网</p></li>
+        <li class="-mob-share-kaixin"><p>开心网</p></li>
+        <li class="-mob-share-douban"><p>豆瓣</p></li>
+        <li class="-mob-share-facebook"><p>Facebook</p></li>
+        <li class="-mob-share-twitter"><p>Twitter</p></li>
+    </ul>
+    <div class="-mob-share-close">取消</div>
+</div>
+<div class="-mob-share-ui-bg"></div>
+<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=2952eb3036d07"></script>
+<!--MOB SHARE END-->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTY3Ny8xODIyMw=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/rqyl.PNG" alt="RQ&YL">
+            
+              <p class="site-author-name" itemprop="name">RQ&YL</p>
+              <p class="site-description motion-element" itemprop="description">长风破浪</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a rel="external nofollow" href="https://github.com/RQwolverine/RQwolverine.github.io" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a rel="external nofollow" href="http://www.1151492435@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a rel="external nofollow" href="https://plus.google.com/RQwolverine" target="_blank" title="Google">
+                      
+                        <i class="fa fa-fw fa-google"></i>Google</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a rel="external nofollow" href="https://mp.csdn.net/" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-globe"></i>CSDN</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.alloyteam.com/nav/" title="Web前端导航" rel="external nofollow" target="_blank">Web前端导航</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.chuangzaoshi.com/code" title="创造狮导航" rel="external nofollow" target="_blank">创造狮导航</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.36zhen.com/t?id=3448" title="前端书籍资料" rel="external nofollow" target="_blank">前端书籍资料</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://e.xitu.io/" title="掘金酱" rel="external nofollow" target="_blank">掘金酱</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.v2ex.com/" title="V2EX" rel="external nofollow" target="_blank">V2EX</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.v2ex.com/" title="印记中文" rel="external nofollow" target="_blank">印记中文</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.jianshu.com/p/191d1e21f7ed" title="Markdown语法" rel="external nofollow" target="_blank">Markdown语法</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hexo.io/zh-cn/" title="Hexo博客框架" rel="external nofollow" target="_blank">Hexo博客框架</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://tieba.baidu.com/f?kw=chinabbs&traceid=" title="Chinabbs" rel="external nofollow" target="_blank">Chinabbs</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnnic.cn/" title="CNNIC" rel="external nofollow" target="_blank">CNNIC</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、Linux目录结构"><span class="nav-number">1.</span> <span class="nav-text">一、Linux目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A、FHS"><span class="nav-number">1.1.</span> <span class="nav-text">A、FHS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.1.</span> <span class="nav-text">Introduction</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B、目标路径"><span class="nav-number">1.2.</span> <span class="nav-text">B、目标路径</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、Linux文件的基本操作"><span class="nav-number">2.</span> <span class="nav-text">二、Linux文件的基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A、新建"><span class="nav-number">2.1.</span> <span class="nav-text">A、新建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B、复制"><span class="nav-number">2.2.</span> <span class="nav-text">B、复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C、删除"><span class="nav-number">2.3.</span> <span class="nav-text">C、删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#D、移动文件与文件重命名"><span class="nav-number">2.4.</span> <span class="nav-text">D、移动文件与文件重命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#E、查看文件"><span class="nav-number">2.5.</span> <span class="nav-text">E、查看文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#F、查看文件类型"><span class="nav-number">2.6.</span> <span class="nav-text">F、查看文件类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#G、编辑文件"><span class="nav-number">2.7.</span> <span class="nav-text">G、编辑文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、RELAX"><span class="nav-number">3.</span> <span class="nav-text">三、RELAX</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">RQ&YL</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a rel="external nofollow" class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a rel="external nofollow" class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'gksyGOj74IYVbyFIEY9420SE-gzGzoHsz',
+        appKey: 'k1g4PAe7ASRTrcJ9q7rMOiDF',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook,QQ,Tencentweibo";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: 15578,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
+
+  
+
+  
+
+  
+
+</div></footer></div></body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+<!--崩溃欺骗-->
+<script type="text/javascript" src="/js/src/crash_cheat.js"></script>

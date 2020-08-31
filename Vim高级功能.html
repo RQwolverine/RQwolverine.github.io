@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "ae85e4ed"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Linux,vim,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Ours" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="一、多文件编辑A、使用vim编辑多个文件 编辑多个文件有两种形式 1.一种是在进入vim前使用的参数就是多个文件 2.另一种就是进入vim后再编辑其他的文件。 同时创建两个新文件并编辑  默认进入1.txt文件的编辑界面 1.命令行模式下输入 :n 编辑 2.txt 文件，可以加 ! 即 :n! 强制切换，之前一个文件的输入没有保存，仅仅切换到另一个文件 2.命令行模式下输入 :N 编辑 1.tx">
+<meta name="keywords" content="Linux,vim">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vim高级功能">
+<meta property="og:url" content="www.rqwolverine.com/Vim高级功能.html">
+<meta property="og:site_name" content="Ours">
+<meta property="og:description" content="一、多文件编辑A、使用vim编辑多个文件 编辑多个文件有两种形式 1.一种是在进入vim前使用的参数就是多个文件 2.另一种就是进入vim后再编辑其他的文件。 同时创建两个新文件并编辑  默认进入1.txt文件的编辑界面 1.命令行模式下输入 :n 编辑 2.txt 文件，可以加 ! 即 :n! 强制切换，之前一个文件的输入没有保存，仅仅切换到另一个文件 2.命令行模式下输入 :N 编辑 1.tx">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-21T06:54:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vim高级功能">
+<meta name="twitter:description" content="一、多文件编辑A、使用vim编辑多个文件 编辑多个文件有两种形式 1.一种是在进入vim前使用的参数就是多个文件 2.另一种就是进入vim后再编辑其他的文件。 同时创建两个新文件并编辑  默认进入1.txt文件的编辑界面 1.命令行模式下输入 :n 编辑 2.txt 文件，可以加 ! 即 :n! 强制切换，之前一个文件的输入没有保存，仅仅切换到另一个文件 2.命令行模式下输入 :N 编辑 1.tx">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="www.rqwolverine.com/Vim高级功能.html">
+
+
+
+
+
+
+  <title>Vim高级功能 | Ours</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<link rel="stylesheet" href="/dist/APlayer.min.css">
+<div id="aplayer"></div>
+<script type="text/javascript" src="/dist/APlayer.min.js"></script>
+<script type="text/javascript" src="/dist/music.js"></script>
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/RQwolverine" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ours</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">负芒披苇，入海望潮</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            站点
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="www.rqwolverine.com/Vim高级功能.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RQ&YL">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/rqyl.PNG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ours">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vim高级功能</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-31T16:05:04+08:00">
+                2020-08-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">Ubuntu</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Ubuntu/Vim/" itemprop="url" rel="index">
+                    <span itemprop="name">Vim</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Vim高级功能.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Vim高级功能.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、多文件编辑"><a href="#一、多文件编辑" class="headerlink" title="一、多文件编辑"></a>一、多文件编辑</h2><h3 id="A、使用vim编辑多个文件"><a href="#A、使用vim编辑多个文件" class="headerlink" title="A、使用vim编辑多个文件"></a>A、使用vim编辑多个文件</h3><ul>
+<li><p>编辑多个文件有两种形式<br> 1.一种是在进入vim前使用的参数就是多个文件<br> 2.另一种就是进入vim后再编辑其他的文件。 同时创建两个新文件并编辑</p>
+</li>
+<li><p>默认进入1.txt文件的编辑界面<br> 1.命令行模式下输入 :n 编辑 2.txt 文件，可以加 ! 即 :n! 强制切换，之前一个文件的输入没有保存，仅仅切换到另一个文件<br> 2.命令行模式下输入 :N 编辑 1.txt 文件，可以加 ! 即 :N! 强制切换，之前文件内的输入没有保存，仅仅是切换到另一个文件</p>
+</li>
+</ul>
+<hr>
+<h3 id="B、进入vim后打开新文件"><a href="#B、进入vim后打开新文件" class="headerlink" title="B、进入vim后打开新文件"></a>B、进入vim后打开新文件</h3><ul>
+<li>命令行模式下输入:e 3.txt 打开新文件3.txt</li>
+<li>命令行模式下输入:e# 回到前一个文件</li>
+<li>命令行模式下输入:ls可以列出以前编辑过的文档</li>
+<li>命令行模式下输入:b 2.txt（或者编号）可以直接进入文件2.txt编辑</li>
+<li>命令行模式下输入:bd 2.txt（或者编号）可以删除以前编辑过的列表中的文件项目</li>
+<li>命令行模式下输入:e! 4.txt，新打开文件4.txt，放弃正在编辑的文件</li>
+<li>命令行模式下输入:f 显示正在编辑的文件名</li>
+<li>命令行模式下输入:f new.txt，改变正在编辑的文件名字为new.txt</li>
+</ul>
+<hr>
+<h3 id="C、恢复文件"><a href="#C、恢复文件" class="headerlink" title="C、恢复文件"></a>C、恢复文件</h3><ul>
+<li>如果因为断电等原因造成文档没有保存，可以采用恢复方式，vim -r进入文档后，输入:ewcover 1.txt来恢复<ul>
+<li><strong>备注：此处有简写，vim -r 后面加上“文件名”“.”“格式名”</strong></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="二、可视模式"><a href="#二、可视模式" class="headerlink" title="二、可视模式"></a>二、可视模式</h2><h3 id="可视模式命令如下"><a href="#可视模式命令如下" class="headerlink" title="可视模式命令如下"></a>可视模式命令如下</h3><ul>
+<li>在普通模式下输入 v（小写），进入字符选择模式，就可以移动光标，光标走过的地方就会选取。再次按下v后就会取消选取</li>
+<li>在普通模式下输入 Shift+v（小写），进入行选择模式，按下V之后就会把整行选取，您可以上下移动光标选更多的行，同样，再按一次 Shift+v 就可以取消选取</li>
+<li>在普通模式下输入 Ctrl+v（小写），这是区域选择模式，可以进行矩形区域选择，再按一次 Ctrl+v 取消选取</li>
+<li>在可视模式下输入 d 删除选取区域内容</li>
+<li>在可视模式下输入y复制选取区域内容</li>
+</ul>
+<hr>
+<h2 id="三、视窗操作"><a href="#三、视窗操作" class="headerlink" title="三、视窗操作"></a>三、视窗操作</h2><ul>
+<li><strong>简介:</strong>  vim 可以在一个界面里打开多个窗口进行编辑，这些编辑窗口称为 vim 的视窗。 打开方法有很多种，例如可以使用在命令行模式下输入 :new 打开一个新的 vim 视窗，并进入视窗编辑一个新文件（普通模式下输入 Ctrl+w也可以），除了 :new 命令，下述列举的多种方法也可以在命令模式或普通模式下打开新的视窗：<ul>
+<li>命令行模式下输入:sp 1.txt 打开新的水平分屏视窗来编辑1.txt</li>
+<li>命令行模式下输入:vsp 2.txt 打开新的垂直分屏视窗来编辑2.txt<br>*普通模式下Ctrl+w s 将当前窗口分割成两个水平的窗口</li>
+<li>普通模式下Ctrl+w v 将当前窗口分割成两个垂直的窗口</li>
+<li>普通模式下Ctrl+w q 即 :q 结束分割出来的视窗。如果在新视窗中有输入需要使用强制符！即:q!</li>
+<li>普通模式下Ctrl+w o 打开一个视窗并且隐藏之前的所有视窗</li>
+<li>普通模式下Ctrl+w j 移至下面视窗</li>
+<li>普通模式下Ctrl+w k 移至上面视窗</li>
+<li>普通模式下Ctrl+w h 移至左边视窗</li>
+<li>普通模式下Ctrl+w l 移至右边视窗</li>
+<li>普通模式下Ctrl+w J 将当前视窗移至下面</li>
+<li>普通模式下Ctrl+w K 将当前视窗移至上面</li>
+<li>普通模式下Ctrl+w H 将当前视窗移至左边</li>
+<li>普通模式下Ctrl+w L 将当前视窗移至右边</li>
+<li>普通模式下Ctrl+w - 减小视窗的高度</li>
+<li>普通模式下Ctrl+w + 增加视窗的高度</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="四、文档加密"><a href="#四、文档加密" class="headerlink" title="四、文档加密"></a>四、文档加密</h2><ul>
+<li><strong>使用命令  vim -x file1</strong></li>
+</ul>
+<hr>
+<h2 id="五、在vim执行外部命令"><a href="#五、在vim执行外部命令" class="headerlink" title="五、在vim执行外部命令"></a>五、在vim执行外部命令</h2><p><strong>在命令行模式中输入!可以执行外部的shell命令</strong></p>
+<ul>
+<li>:!ls 用于显示当前目录的内容</li>
+<li>:!rm FILENAME用于删除名为 FILENAME 的文件</li>
+<li>:w FILENAME可将当前 VIM 中正在编辑的文件另存为 FILENAME 文件</li>
+</ul>
+<hr>
+<h2 id="六、帮助系统"><a href="#六、帮助系统" class="headerlink" title="六、帮助系统"></a>六、帮助系统</h2><ul>
+<li>普通模式下按F1打开vim自己预设的帮助文档</li>
+<li>命令行模式下输入:h shiftwidth 打开名为shiftwidth的帮助文件</li>
+<li>命令行模式下输入:ver 显示版本及参数</li>
+</ul>
+<hr>
+<h2 id="七、功能设定"><a href="#七、功能设定" class="headerlink" title="七、功能设定"></a>七、功能设定</h2><h3 id="A、vim的功能设定"><a href="#A、vim的功能设定" class="headerlink" title="A、vim的功能设定"></a>A、vim的功能设定</h3><ul>
+<li>可以在编辑文件的时候进行功能设定，如命令行模式下输入:set nu（显示行数），设定值退出vim后不会保存。要永久保存配置需要修改vim配置文件。</li>
+<li><strong>vim的配置文件~/.vimrc(实验楼环境中配置文件在/etc/vim/vimrc)，可以打开文件进行修改，不过务必小心不要影响vim正常使用</strong></li>
+</ul>
+<h3 id="B、获取目前的设定"><a href="#B、获取目前的设定" class="headerlink" title="B、获取目前的设定"></a>B、获取目前的设定</h3><ul>
+<li>命令行模式下输入:set或者:se显示所有修改过的配置</li>
+<li>命令行模式下输入:set all 显示所有的设定值</li>
+<li>命令行模式下输入:set option? 显示option的设定值</li>
+<li>命令行模式下输入:set nooption 取消当前设定值</li>
+</ul>
+<h3 id="C、set功能的说明"><a href="#C、set功能的说明" class="headerlink" title="C、set功能的说明"></a>C、set功能的说明</h3><ul>
+<li>命令行模式下输入:set autoindent(ai) 设置自动缩进</li>
+<li>命令行模式下输入:set autowrite(aw) 设置自动存档，默认未打开</li>
+<li>命令行模式下输入:set background=dark或light，设置背景风格</li>
+<li>命令行模式下输入:set backup(bk) 设置自动备份，默认未打开</li>
+<li>命令行模式下输入: set cindent(cin) 设置C语言风格缩进</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+	
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+  
+</div>
+
+<div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/Vim高级功能.html">Vim高级功能</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 RQ&YL 的个人博客">RQ&YL</a></p>
+  <p><span>发布时间:</span>2020年08月31日 - 16:08</p>
+  <p><span>最后更新:</span>2018年12月21日 - 14:12</p>
+  <p><span>原始链接:</span><a href="/Vim高级功能.html" title="Vim高级功能">www.rqwolverine.com/Vim高级功能.html</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="www.rqwolverine.com/Vim高级功能.html" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+      
+</div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>RQ原创技术分享，您的支持将鼓励我继续创作哟~~~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="RQ&YL 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
+          
+            <a href="/tags/vim/" rel="tag"><i class="fa fa-tag"></i> vim</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Vim查找替换.html" rel="next" title="Vim文档编辑">
+                <i class="fa fa-chevron-left"></i> Vim文档编辑
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Windows10·操作系统触控板使用（原创）.html" rel="prev" title="Windows10·操作系统触控板使用（原创）">
+                Windows10·操作系统触控板使用（原创） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!--MOB SHARE BEGIN-->
+<div class="-mob-share-ui-button -mob-share-open">分享</div>
+<div class="-mob-share-ui" style="display: none">
+    <ul class="-mob-share-list">
+        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+        <li class="-mob-share-tencentweibo"><p>腾讯微博</p></li>
+        <li class="-mob-share-qzone"><p>QQ空间</p></li>
+        <li class="-mob-share-qq"><p>QQ好友</p></li>
+        <li class="-mob-share-renren"><p>人人网</p></li>
+        <li class="-mob-share-kaixin"><p>开心网</p></li>
+        <li class="-mob-share-douban"><p>豆瓣</p></li>
+        <li class="-mob-share-facebook"><p>Facebook</p></li>
+        <li class="-mob-share-twitter"><p>Twitter</p></li>
+    </ul>
+    <div class="-mob-share-close">取消</div>
+</div>
+<div class="-mob-share-ui-bg"></div>
+<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=2952eb3036d07"></script>
+<!--MOB SHARE END-->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTY3Ny8xODIyMw=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/rqyl.PNG" alt="RQ&YL">
+            
+              <p class="site-author-name" itemprop="name">RQ&YL</p>
+              <p class="site-description motion-element" itemprop="description">长风破浪</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a rel="external nofollow" href="https://github.com/RQwolverine/RQwolverine.github.io" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a rel="external nofollow" href="http://www.1151492435@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a rel="external nofollow" href="https://plus.google.com/RQwolverine" target="_blank" title="Google">
+                      
+                        <i class="fa fa-fw fa-google"></i>Google</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a rel="external nofollow" href="https://mp.csdn.net/" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-globe"></i>CSDN</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.alloyteam.com/nav/" title="Web前端导航" rel="external nofollow" target="_blank">Web前端导航</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.chuangzaoshi.com/code" title="创造狮导航" rel="external nofollow" target="_blank">创造狮导航</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.36zhen.com/t?id=3448" title="前端书籍资料" rel="external nofollow" target="_blank">前端书籍资料</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://e.xitu.io/" title="掘金酱" rel="external nofollow" target="_blank">掘金酱</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.v2ex.com/" title="V2EX" rel="external nofollow" target="_blank">V2EX</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.v2ex.com/" title="印记中文" rel="external nofollow" target="_blank">印记中文</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.jianshu.com/p/191d1e21f7ed" title="Markdown语法" rel="external nofollow" target="_blank">Markdown语法</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hexo.io/zh-cn/" title="Hexo博客框架" rel="external nofollow" target="_blank">Hexo博客框架</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://tieba.baidu.com/f?kw=chinabbs&traceid=" title="Chinabbs" rel="external nofollow" target="_blank">Chinabbs</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnnic.cn/" title="CNNIC" rel="external nofollow" target="_blank">CNNIC</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、多文件编辑"><span class="nav-number">1.</span> <span class="nav-text">一、多文件编辑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A、使用vim编辑多个文件"><span class="nav-number">1.1.</span> <span class="nav-text">A、使用vim编辑多个文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B、进入vim后打开新文件"><span class="nav-number">1.2.</span> <span class="nav-text">B、进入vim后打开新文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C、恢复文件"><span class="nav-number">1.3.</span> <span class="nav-text">C、恢复文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、可视模式"><span class="nav-number">2.</span> <span class="nav-text">二、可视模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#可视模式命令如下"><span class="nav-number">2.1.</span> <span class="nav-text">可视模式命令如下</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、视窗操作"><span class="nav-number">3.</span> <span class="nav-text">三、视窗操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、文档加密"><span class="nav-number">4.</span> <span class="nav-text">四、文档加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、在vim执行外部命令"><span class="nav-number">5.</span> <span class="nav-text">五、在vim执行外部命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、帮助系统"><span class="nav-number">6.</span> <span class="nav-text">六、帮助系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、功能设定"><span class="nav-number">7.</span> <span class="nav-text">七、功能设定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A、vim的功能设定"><span class="nav-number">7.1.</span> <span class="nav-text">A、vim的功能设定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B、获取目前的设定"><span class="nav-number">7.2.</span> <span class="nav-text">B、获取目前的设定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C、set功能的说明"><span class="nav-number">7.3.</span> <span class="nav-text">C、set功能的说明</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">RQ&YL</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a rel="external nofollow" class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a rel="external nofollow" class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'gksyGOj74IYVbyFIEY9420SE-gzGzoHsz',
+        appKey: 'k1g4PAe7ASRTrcJ9q7rMOiDF',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook,QQ,Tencentweibo";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: 15578,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
+
+  
+
+  
+
+  
+
+</div></footer></div></body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+<!--崩溃欺骗-->
+<script type="text/javascript" src="/js/src/crash_cheat.js"></script>
